@@ -13,4 +13,8 @@ class PagesController extends Controller
     public function dataSiswa() {
         return view('pages.admin.data_siswa');
     }
+
+    public function dataKriteria() {
+        return view('pages.admin.data_kriteria');
+    }
 }

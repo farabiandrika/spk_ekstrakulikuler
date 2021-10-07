@@ -21,6 +21,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::middleware(['isAdmin'])->group(function () {
             Route::get('/admin', function() { return 'ini admin'; });
             Route::get('/data-siswa', [PagesController::class, 'dataSiswa']);
+            Route::get('/data-kriteria', [PagesController::class, 'dataKriteria']);
         });
      
         Route::middleware(['isSiswa'])->group(function () {

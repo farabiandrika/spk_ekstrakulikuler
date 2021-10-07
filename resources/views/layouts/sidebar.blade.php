@@ -17,10 +17,10 @@
             <li class="@yield('data-master-nav')"><a><i class="fa fa-table"></i> Data Master <span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><a href="{{ url('data-siswa') }}">Data Siswa</a></li>
-                <li><a href="{{ url('data_kriteria') }}">Data Kriteria</a></li>
-                <li><a href="{{ url('data_alternatif') }}">Data Ekstrakulikuler</a></li>
-                <li><a href="{{ url('data_bobot_alternatif') }}">Data Penilaian</a></li>
-                <li><a href="{{ url('data_hasil') }}">Hasil Perhitungan</a></li>
+                <li><a href="{{ url('data-kriteria') }}">Data Kriteria</a></li>
+                <li><a href="{{ url('data-alternatif') }}">Data Ekstrakulikuler</a></li>
+                <li><a href="{{ url('data-bobot-alternatif') }}">Data Penilaian</a></li>
+                <li><a href="{{ url('data-hasil') }}">Hasil Perhitungan</a></li>
               </ul>
             </li>
     
