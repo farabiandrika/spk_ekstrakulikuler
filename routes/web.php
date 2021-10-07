@@ -19,14 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::middleware(['auth'])->group(function () {
         Route::middleware(['isAdmin'])->group(function () {
-            Route::get('/admin', function() { return 'ini admin'; });
             Route::get('/data-siswa', [PagesController::class, 'dataSiswa']);
             Route::get('/data-kriteria', [PagesController::class, 'dataKriteria']);
             Route::get('/data-ekstrakulikuler', [PagesController::class, 'dataEkstrakulikuler']);
         });
      
         Route::middleware(['isSiswa'])->group(function () {
-            Route::get('/siswa', function() { return 'ini user siswa'; });
+            Route::get('/biodata', [PagesController::class, 'biodata']);
         });
      
         Route::get('/logout', function() {

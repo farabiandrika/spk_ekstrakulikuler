@@ -162,6 +162,7 @@
                 $('#data-ekstrakulikuler').DataTable().ajax.reload();
                 $('#modal-add').modal('toggle');
                 $('#addEkstrakulikuler').trigger("reset");
+                toastr.success('Success Add Ekstrakulikuler')
             }
         })
     })
@@ -186,6 +187,7 @@
                   $('#data-ekstrakulikuler').DataTable().ajax.reload();
                   $('#modal-edit').modal('toggle')
                   $('#editEkstrakulikuler').trigger("reset");
+                  toastr.success('Success Update Ekstrakulikuler')
               }
           })
       })
@@ -217,6 +219,7 @@
                           }
                       });
                   swal.close()
+                  toastr.success('Ekstrakulikuler Deleted')
               } else {
                   swal.close()
               }

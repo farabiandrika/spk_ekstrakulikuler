@@ -21,4 +21,8 @@ class PagesController extends Controller
     public function dataEkstrakulikuler() {
         return view('pages.admin.data_ekstrakulikuler');
     }
+
+    public function biodata() {
+        return view('pages.siswa.biodata');
+    }
 }

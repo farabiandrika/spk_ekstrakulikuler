@@ -221,6 +221,7 @@
                 $('#data-kriteria').DataTable().ajax.reload();
                 $('#modal-add').modal('toggle');
                 $('#addKriteria').trigger("reset");
+                toastr.success('Success Add Kriteria')
             }
         })
     })
@@ -245,6 +246,7 @@
                   $('#data-kriteria').DataTable().ajax.reload();
                   $('#modal-edit').modal('toggle')
                   $('#editKriteria').trigger("reset");
+                  toastr.success('Success Update Kriteria')
               }
           })
       })
@@ -276,6 +278,7 @@
                           }
                       });
                   swal.close()
+                  toastr.success('Kriteria Deleted')
               } else {
                   swal.close()
               }

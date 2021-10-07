@@ -240,7 +240,6 @@
     {{-- <script type="text/javascript" src="{{ asset('template/bootstrap-daterangepicker/daterangepicker.js') }}"></script> --}}
     <script>
       $(document).ready(function() {
-        $('.date').datepicker({});
 
         let dataSiswa = $('#data-siswa').DataTable({
           processing: true,
@@ -274,7 +273,7 @@
               $('#editUser input[name="email"]').val(response.data.email)
               $('#editUser input[name="nis"]').val(response.data.nis)
               $('#editUser input[name="tempat_lahir"]').val(response.data.tempat_lahir)
-              if (response.data.tanggal_lahir == null) {
+              if (response.data.tanggal_lahir != null) {
                 $('#editUser input[name="tanggal_lahir"]').val(response.data.tanggal_lahir)                
               }
               $('#editUser option[id="'+response.data.kelas+'"]').attr('selected','selected');
@@ -302,6 +301,7 @@
                 $('#data-siswa').DataTable().ajax.reload();
                 $('#modal-add').modal('toggle');
                 $('#addUser').trigger("reset");
+                toastr.success('Success Add User')
             }
         })
     })
@@ -326,6 +326,7 @@
                   $('#data-siswa').DataTable().ajax.reload();
                   $('#modal-edit').modal('toggle')
                   $('#editUser').trigger("reset");
+                  toastr.success('Success Update User')
               }
           })
       })
@@ -357,6 +358,7 @@
                           }
                       });
                   swal.close()
+                  toastr.success('User Deleted')
               } else {
                   swal.close()
               }
