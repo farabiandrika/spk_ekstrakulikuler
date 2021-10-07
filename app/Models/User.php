@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -61,5 +62,19 @@ class User extends Authenticatable
 
     public function ekstrakulikuler() {
         return $this->belongsTo('App\Models\Ekstrakulikuler');
+    }
+
+    public function setTanggalLahirAttribute($value)
+    {
+        if ($value != null) {
+            $this->attributes['tanggal_lahir'] = Carbon::createFromFormat(config('app.date_format'), $value)->format('Y-m-d');
+        }
+    }
+
+    public function getTanggalLahirAttribute($value)
+    {
+        if ($value != null) {
+            return Carbon::parse($value)->format(config('app.date_format'));
+        }
     }
 }

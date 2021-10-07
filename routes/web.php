@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::middleware(['auth'])->group(function () {
         Route::middleware(['isAdmin'])->group(function () {
             Route::get('/admin', function() { return 'ini admin'; });
+            Route::get('/data-siswa', [PagesController::class, 'dataSiswa']);
         });
      
         Route::middleware(['isSiswa'])->group(function () {
@@ -29,16 +31,15 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Auth::logout();
             return redirect('/login');
         });
-    });
-    Route::get('/', function () {
-        return view('welcome');
+
+        Route::get('/', [PagesController::class, 'home']);
     });
 
 	Auth::routes([
         'register' => false, // Registration Routes...
         'reset' => false, // Password Reset Routes...
         'verify' => false, // Email Verification Routes...
-      ]);
+    ]);
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    
 });
