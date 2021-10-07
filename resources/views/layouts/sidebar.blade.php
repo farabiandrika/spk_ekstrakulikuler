@@ -18,9 +18,9 @@
               <ul class="nav child_menu">
                 <li><a href="{{ url('data-siswa') }}">Data Siswa</a></li>
                 <li><a href="{{ url('data-kriteria') }}">Data Kriteria</a></li>
-                <li><a href="{{ url('data-alternatif') }}">Data Ekstrakulikuler</a></li>
-                <li><a href="{{ url('data-bobot-alternatif') }}">Data Penilaian</a></li>
-                <li><a href="{{ url('data-hasil') }}">Hasil Perhitungan</a></li>
+                <li><a href="{{ url('data-ekstrakulikuler') }}">Data Ekstrakulikuler</a></li>
+                {{-- <li><a href="{{ url('data-bobot-alternatif') }}">Data Penilaian</a></li>
+                <li><a href="{{ url('data-hasil') }}">Hasil Perhitungan</a></li> --}}
               </ul>
             </li>
     

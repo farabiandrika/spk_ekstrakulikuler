@@ -17,4 +17,8 @@ class PagesController extends Controller
     public function dataKriteria() {
         return view('pages.admin.data_kriteria');
     }
+
+    public function dataEkstrakulikuler() {
+        return view('pages.admin.data_ekstrakulikuler');
+    }
 }

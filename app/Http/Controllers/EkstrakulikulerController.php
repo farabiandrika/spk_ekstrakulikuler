@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ekstrakulikuler;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
+use Yajra\DataTables\Facades\DataTables;
 
 class EkstrakulikulerController extends Controller
 {
@@ -14,7 +18,22 @@ class EkstrakulikulerController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $ekstrakulikuler = Ekstrakulikuler::all();
+            
+            return DataTables::of($ekstrakulikuler)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm" data-id='.$row->id.'>Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm" data-id='.$row->id.'>Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        } catch (QueryException $err) {
+            return response()->json([
+                'message' => 'Failed '.$err->errorInfo,
+            ]);
+        }
     }
 
     /**
@@ -35,7 +54,31 @@ class EkstrakulikulerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $validator = Validator::make($request->all(), [
+                'nama' => 'required|string|max:255',
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => 'Failed To Create',
+                    'data' => $validator->errors(),
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+
+            $ekstrakulikuler = Ekstrakulikuler::create($validator->validated());
+
+            $response = [
+                'message' => 'Ekstrakulikuler Created',
+                'data' => $ekstrakulikuler
+            ];
+            
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Failed '.$e,
+            ],Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -46,7 +89,17 @@ class EkstrakulikulerController extends Controller
      */
     public function show(Ekstrakulikuler $ekstrakulikuler)
     {
-        //
+        try {
+            $response = [
+                'message' => 'Ekstrakulikuler Obtained',
+                'data' => $ekstrakulikuler
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Failed '.$e->errorInfo,
+            ]);
+        }
     }
 
     /**
@@ -69,7 +122,33 @@ class EkstrakulikulerController extends Controller
      */
     public function update(Request $request, Ekstrakulikuler $ekstrakulikuler)
     {
-        //
+        try {
+            $rules = [
+                'nama' => 'required|string|max:255',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+    
+            if ($validator->fails()) {
+                return response()->json([
+                    'message' => 'Failed To Update',
+                    'data' => $validator->errors(),
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+    
+            $ekstrakulikuler = $ekstrakulikuler->update($validator->validated());
+    
+            $response = [
+                'message' => 'Ekstrakulikuler Updated',
+                'data' => $ekstrakulikuler
+            ];
+            
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Failed '.$e,
+            ]);
+        }
     }
 
     /**
@@ -80,6 +159,17 @@ class EkstrakulikulerController extends Controller
      */
     public function destroy(Ekstrakulikuler $ekstrakulikuler)
     {
-        //
+        try {
+            $ekstrakulikuler->delete();
+
+            $response = [
+                'message' => 'Siswa Deleted',
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Failed '.$e->errorInfo,
+            ]);
+        }
     }
 }

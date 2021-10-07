@@ -14,7 +14,7 @@ class Ekstrakulikuler extends Model
 
     public function getNamaAttribute($value)
     {
-        return strtoupper($value);
+        return ucfirst($value);
     }
 
     public function setNamaAttribute($value) {
