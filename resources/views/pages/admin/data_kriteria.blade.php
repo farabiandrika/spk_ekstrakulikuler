@@ -31,7 +31,7 @@
                   <th>No</th>
                   <th>Nama</th>
                   <th>Bobot</th>
-                  <th>Keterangan</th>
+                  {{-- <th>Keterangan</th> --}}
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -80,7 +80,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Jenis<span class="required"></span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -90,7 +90,7 @@
                 <option value="0" id="keterangan_0">Cost</option>
               </select>
             </div>
-          </div>
+          </div> --}}
 
       </div>
       <div class="modal-footer">
@@ -135,7 +135,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          {{-- <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Jenis<span class="required"></span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -145,7 +145,7 @@
                 <option value="0">Cost</option>
               </select>
             </div>
-          </div>
+          </div> --}}
 
       </div>
       <div class="modal-footer">
@@ -179,7 +179,7 @@
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'nama', name: 'nama'},
               {data: 'bobot', name: 'bobot'},
-              {data: 'keterangan', name: 'keterangan'},
+              // {data: 'keterangan', name: 'keterangan'},
               {
                   data: 'action', 
                   name: 'action', 

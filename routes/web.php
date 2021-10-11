@@ -22,10 +22,12 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
             Route::get('/data-siswa', [PagesController::class, 'dataSiswa']);
             Route::get('/data-kriteria', [PagesController::class, 'dataKriteria']);
             Route::get('/data-ekstrakulikuler', [PagesController::class, 'dataEkstrakulikuler']);
+            Route::get('/list-ekstrakulikuler', [PagesController::class, 'listEkstrakulikuler']);
         });
      
         Route::middleware(['isSiswa'])->group(function () {
             Route::get('/biodata', [PagesController::class, 'biodata']);
+            Route::get('/ekstrakulikuler', [PagesController::class, 'ekstrakulikuler']);
         });
      
         Route::get('/logout', function() {

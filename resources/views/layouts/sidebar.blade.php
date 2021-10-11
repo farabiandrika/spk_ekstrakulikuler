@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-      <a href="{{ url('/') }}" class="site_title"> <img src="{{ asset('images/logopku.png') }}" width="30" height="30" alt=""> <span>Ekstrakulikuler</span></a>
+      <a href="{{ url('/') }}" class="site_title"> <img src="{{ asset('images/logoku.png') }}" width="30" height="30" alt=""> <span>Ekstrakulikuler</span></a>
     </div>
     
     <div class="clearfix"></div>
@@ -22,7 +22,7 @@
               </ul>
             </li>
     
-            <li><a href="{{ url('data_perhitungan') }}"><i class="fa fa-calculator"></i>Perhitungan</a></li>
+            <li><a href="{{ url('list-ekstrakulikuler') }}"><i class="fa fa-check"></i>Ekstrakulikuler</a></li>
             @endif
 
             @if (auth()->user()->role == 'siswa')

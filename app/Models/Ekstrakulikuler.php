@@ -22,6 +22,6 @@ class Ekstrakulikuler extends Model
     }
 
     public function user() {
-        return $this->hasMany('App\Models\User');
+        return $this->hasOne('App\Models\User');
     }
 }

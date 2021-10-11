@@ -17,7 +17,7 @@ class CreateKriteriasTable extends Migration
             $table->id();
             $table->string('nama');
             $table->integer('bobot');
-            $table->integer('benefit');
+            $table->integer('benefit')->default(1);
             $table->timestamps();
         });
     }

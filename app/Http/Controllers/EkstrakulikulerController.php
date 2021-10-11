@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ekstrakulikuler;
+use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -166,6 +167,46 @@ class EkstrakulikulerController extends Controller
                 'message' => 'Siswa Deleted',
             ];
             return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Failed '.$e->errorInfo,
+            ]);
+        }
+    }
+
+    public function pilihEkskul(Ekstrakulikuler $ekstrakulikuler,$id) {
+        try {
+            User::where('id',$id)->update(['ekstrakulikuler_id' => $ekstrakulikuler->id]);
+
+            $response = [
+                'message' => 'Success',
+            ];
+            return response()->json($response, Response::HTTP_OK);
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Failed '.$e->errorInfo,
+            ]);
+        }
+    }
+
+    public function getUserEkskul() {
+        try {
+            $data = User::where('role','siswa')->with('ekstrakulikuler')->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('nameWithUsername', function($row){                    
+                    return $row->nama .' ('.$row->username.')';
+                })
+                ->addColumn('ekstrakulikuler_name', function($row){                    
+                    if ($row->ekstrakulikuler) {                        
+                        return $row->ekstrakulikuler->nama;
+                    } else {
+                        return '-';
+                    }
+                })
+                ->rawColumns(['nameWithUsername','ekstrakulikuler_name'])
+                ->make(true);
         } catch (QueryException $e) {
             return response()->json([
                 'message' => 'Failed '.$e->errorInfo,

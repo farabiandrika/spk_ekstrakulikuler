@@ -61,7 +61,6 @@ class KriteriaController extends Controller
             $validator = Validator::make($request->all(), [
                 'nama' => 'required|string|max:255',
                 'bobot' => 'required',
-                'benefit' => 'required',
             ]);
     
             if ($validator->fails()) {
@@ -132,7 +131,6 @@ class KriteriaController extends Controller
             $rules = [
                 'nama' => 'required|string|max:255',
                 'bobot' => 'required',
-                'benefit' => 'required',
             ];
 
             $validator = Validator::make($request->all(), $rules);

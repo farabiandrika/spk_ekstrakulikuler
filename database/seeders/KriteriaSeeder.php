@@ -27,7 +27,7 @@ class KriteriaSeeder extends Seeder
         DB::table('kriteria')->insert([
             'nama' => 'jarak',
             'bobot' => 3,
-            'benefit' => 0,
+            'benefit' => 1,
         ]);
         DB::table('kriteria')->insert([
             'nama' => 'orang tua',
